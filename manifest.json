@@ -1,0 +1,19 @@
+{
+    "name": "出品者Amazonの商品しか出さなくするやつ",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "description": "Amazon.co.jpで出品者がAmazonの商品しか出さなくします",
+    "background": {
+        "page": "background/background.html"
+    },
+    "browser_action": {
+        "default_icon": "icon/32-on.png",
+        "default_title": "Amazon"
+    },
+    "permissions": [
+        "tabs"
+    ],
+    "icons": {
+        "32": "icon/32-on.png"
+    }
+}
