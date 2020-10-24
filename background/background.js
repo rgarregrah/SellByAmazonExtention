@@ -45,8 +45,8 @@ const queryCheck = (url) => {
 };
 
 const makeUrl = (url) => {
-    rhIdx = null;
-    splited = url.split("&");
+    let rhIdx = null;
+    let splited = url.split("&");
     for (let i = 0; i < splited.length; i++) {
         if (splited[i].match(/rh=/) !== null) {
             rhIdx = i;
