@@ -10,7 +10,7 @@ chrome.browserAction.onClicked.addListener((tab) => {
 
     if (urlCheck(tab.url)) {
         if (status) {
-            chrome.tabs.update(tab.id, { url: tab.url + "&rh=p_6%3AAN1VRQENFRJN5" });
+            chrome.tabs.update(tab.id, { url: makeUrl(tab.url) });
         } else {
             let tmpUrl = tab.url;
             tmpUrl = tmpUrl.replace(/&rh=p_6%3AAN1VRQENFRJN5/g, "");
@@ -25,7 +25,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     }
     if (status) {
         if (urlCheck(tab.url) && queryCheck(tab.url)) {
-            chrome.tabs.update(tab.id, { url: tab.url + "&rh=p_6%3AAN1VRQENFRJN5" });
+            chrome.tabs.update(tab.id, { url: makeUrl(tab.url) });
         }
     }
 });
@@ -43,3 +43,17 @@ const queryCheck = (url) => {
     }
     return true;
 };
+
+const makeUrl = (url) => {
+    rhIdx = null;
+    splited = url.split("&");
+    for (let i = 0; i < splited.length; i++) {
+        if (splited[i].match(/rh=/) !== null) {
+            rhIdx = i;
+        }
+    }
+    if (rhIdx !== null) {
+        splited.splice(rhIdx, 1);
+    }
+    return splited.join('&') + "&rh=p_6%3AAN1VRQENFRJN5";
+}
